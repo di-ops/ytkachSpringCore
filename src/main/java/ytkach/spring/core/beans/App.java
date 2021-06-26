@@ -13,16 +13,20 @@ public class App {
         this.eventLogger = eventLogger;
     }
 
-    public void LogEvent (String msg){
+    public void LogEvent (String msg, Event event){
         String message = msg.replaceAll((client.getId())+"",client.getName());
-        eventLogger.logEvent(message);
+        event.setMsg(message);
+        eventLogger.logEvent(event);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("Spring XML.xml");
         App app =(App) applicationContext.getBean("app");
-        app.LogEvent("some event for user 1");
-        app.LogEvent("some event for user 2");
+        Event event = applicationContext.getBean(Event.class);
+        Thread.sleep(1000);
+        app.LogEvent("some event for user 1", event);
+        event = applicationContext.getBean(Event.class);
+        app.LogEvent("some event for user 2", event);
     }
 
 }
