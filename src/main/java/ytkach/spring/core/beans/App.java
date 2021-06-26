@@ -1,3 +1,9 @@
+package ytkach.spring.core.beans;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import ytkach.spring.core.EventLogger;
+
 public class App {
     private Client client;
     private EventLogger eventLogger;
@@ -13,8 +19,10 @@ public class App {
     }
 
     public static void main(String[] args) {
-        App app = new App(new Client(1,"John"), new ConsoleEventLogger());
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("Spring XML.xml");
+        App app =(App) applicationContext.getBean("app");
         app.LogEvent("some event for user 1");
+        app.LogEvent("some event for user 2");
     }
 
 }

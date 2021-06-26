@@ -1,3 +1,5 @@
+package ytkach.spring.core.beans;
+
 public class Client {
     private int id;
     private String name;
