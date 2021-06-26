@@ -6,6 +6,9 @@ public class Client {
         return id;
     }
 
+    public Client() {
+    }
+
     public void setId(int id) {
         this.id = id;
     }

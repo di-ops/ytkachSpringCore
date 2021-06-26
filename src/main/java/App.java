@@ -1,15 +1,19 @@
 public class App {
     private Client client;
-    private ConsoleEventLogger eventLogger;
+    private EventLogger eventLogger;
+
+    public App(Client client, EventLogger eventLogger) {
+        this.client = client;
+        this.eventLogger = eventLogger;
+    }
+
     public void LogEvent (String msg){
         String message = msg.replaceAll((client.getId())+"",client.getName());
-        eventLogger.LogEvent(message);
+        eventLogger.logEvent(message);
     }
 
     public static void main(String[] args) {
-        App app = new App();
-        app.client = new Client(1, "John");
-        app.eventLogger = new ConsoleEventLogger();
+        App app = new App(new Client(1,"John"), new ConsoleEventLogger());
         app.LogEvent("some event for user 1");
     }
 
