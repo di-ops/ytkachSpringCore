@@ -2,11 +2,11 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <import resource="loggers.xml"/>
     <bean id = "client" class="ytkach.spring.core.beans.Client">
         <constructor-arg value="1"/>
         <constructor-arg value="John"/>
     </bean>
-    <bean id = "eventLogger" class="ytkach.spring.core.loggers.ConsoleEventLogger"/>
     <bean id = "app" class="ytkach.spring.core.App">
         <constructor-arg ref="client"/>
         <constructor-arg ref="eventLogger"/>
@@ -19,11 +19,5 @@
             <bean id = "dateFormat" class="java.text.DateFormat" factory-method="getDateTimeInstance"/>
         </constructor-arg>
     </bean>
-    <bean id = "fileEventLogger" class="ytkach.spring.core.loggers.FileEventLogger" init-method="init">
-        <constructor-arg value="target/events_log.txt"/>
-    </bean>
-    <bean id = "cacheFileEventLogger" class="ytkach.spring.core.loggers.CacheFileEventLogger" destroy-method="destroy">
-        <constructor-arg value="target/events_log.txt"/>
-        <constructor-arg value="5"/>
-    </bean>
+
 </beans>
