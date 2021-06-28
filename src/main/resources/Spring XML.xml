@@ -6,10 +6,17 @@
     <bean id = "client" class="ytkach.spring.core.beans.Client">
         <constructor-arg value="1"/>
         <constructor-arg value="John"/>
+        <property name="greeting" value="Hello There!"/>
     </bean>
     <bean id = "app" class="ytkach.spring.core.App">
         <constructor-arg ref="client"/>
-        <constructor-arg ref="eventLogger"/>
+        <constructor-arg ref="fileEventLogger"/>
+        <constructor-arg>
+            <map>
+                <entry key="INFO" value-ref="consoleEventLogger"></entry>
+                <entry key="ERROR" value-ref="combinedEventLogger"></entry>
+            </map>
+        </constructor-arg>
     </bean>
     <bean id = "Event" class="ytkach.spring.core.beans.Event" scope="prototype">
         <constructor-arg>

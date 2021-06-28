@@ -4,6 +4,12 @@ public class Client {
     private int id;
     private String name;
 
+    public void setGreeting(String greet) {
+        this.greet = greet;
+    }
+
+    private String greet;
+
     public int getId() {
         return id;
     }
