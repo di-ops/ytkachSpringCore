@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.text.DateFormat;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -15,7 +16,7 @@ public class Event {
 
     private static final AtomicInteger AUTO_ID = new AtomicInteger(0);
 
-    private int id;
+    private final int id;
     private String msg;
 
     @Autowired
@@ -55,6 +56,10 @@ public class Event {
     public String toString() {
         return "Event [id=" + id + ", msg=" + msg + ", date="
                 + (dateFormat != null ? dateFormat.format(date) : date) + "]";
+    }
+
+    public static boolean isDay(){
+        return LocalTime.now().getHour() > 8 && LocalTime.now().getHour() < 17;
     }
 
 }

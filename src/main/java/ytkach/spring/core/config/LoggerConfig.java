@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.EnumMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,13 +19,16 @@ import javax.annotation.Resource;
 @Configuration
 public class LoggerConfig {
 
+    public LoggerConfig(@Qualifier("consoleEventLogger") EventLogger consoleEventLogger) {
+        this.consoleEventLogger = consoleEventLogger;
+    }
+
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertyConfigIn() {
         return new PropertySourcesPlaceholderConfigurer();
     }
 
-    @Resource(name = "consoleEventLogger")
-    private EventLogger consoleEventLogger;
+    private final EventLogger consoleEventLogger;
 
     @Resource(name = "fileEventLogger")
     private EventLogger fileEventLogger;
