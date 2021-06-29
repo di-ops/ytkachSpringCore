@@ -1,35 +1,36 @@
 package ytkach.spring.core.beans;
 
 public class Client {
-    private int id;
-    private String name;
-    private String greet;
 
-    public void setGreeting(String greet) {
-        this.greet = greet;
-    }
+    private String id;
 
-    public int getId() {
+    private String fullName;
+
+    private String greeting;
+
+    public String getId() {
         return id;
     }
 
-    public Client() {
-    }
-
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
     public String getName() {
-        return name;
+        return fullName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String fullName) {
+        this.fullName = fullName;
     }
 
-    public Client(int id, String name) {
-        this.id = id;
-        this.name = name;
+    public String getGreeting() {
+        return greeting;
     }
+
+    public void setGreeting(String greeting) {
+        this.greeting = greeting;
+    }
+
 }
+

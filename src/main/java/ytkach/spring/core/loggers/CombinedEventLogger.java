@@ -1,18 +1,21 @@
 package ytkach.spring.core.loggers;
 
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 import ytkach.spring.core.beans.Event;
 
-import java.io.IOException;
+import javax.annotation.Resource;
+import java.util.Collection;
 import java.util.List;
 
+@Component
 public class CombinedEventLogger implements EventLogger{
-    public CombinedEventLogger(List<EventLogger> eventLoggers) {
-        this.eventLoggers = eventLoggers;
-    }
 
-    private List<EventLogger> eventLoggers;
+    @Resource(name = "combinedLoggers")
+    private Collection<EventLogger> eventLoggers;
+
     @Override
-    public void logEvent(Event event) throws IOException {
+    public void logEvent(Event event){
         for (EventLogger logger: eventLoggers) {
             logger.logEvent(event);
         }
